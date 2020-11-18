@@ -17,30 +17,14 @@ class ArticleFormActions{
         cy.get('[ui-sref="app.editor"]').should("be.visible").trigger("click")
  
     }
-    fillTitleInArticleForm(value){
-        cy.get('[ng-model="$ctrl.article.title"]')
-          .clear()
-          .type(value)
-          return this
-    }
-    fillDescInArticleForm(value){
-        cy.get('[ng-model="$ctrl.article.description"]')
-        .clear()
-        .type(value)
-        return this
-    }
-    fillBodyInArticleForm(value){
-        cy.get('[ng-model="$ctrl.article.body"]')
-            .clear()
-            .type(value)
-            return this
-    }
-    fillTagsInArticleForm(value){
-      cy.get('[ng-model="$ctrl.tagField"]')
-        .clear()
-        .type(value)
-        return this
-    }
+    fillArticalForm(title,desc,body,tags){
+        cy.get('[ng-model="$ctrl.article.title"]').clear().type(title)
+        cy.get('[ng-model="$ctrl.article.description"]').clear().type(desc)
+        cy.get('[ng-model="$ctrl.article.body"]').clear().type(body)
+        cy.get('[ng-model="$ctrl.tagField"]').clear().type(tags)
+        return this 
+     }
+  
     publishArticleBtn(){
         cy.get('[ng-click="$ctrl.submit()"]')
         .click()
