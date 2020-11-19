@@ -1,42 +1,24 @@
 import { expect } from "chai"
 
 class ArticleFormAssertion{
-    visibilityOfTitle(value){
+    checkVisibiltyOfArticleFormFields(){
        cy.get('[ng-model="$ctrl.article.title"]').should('be.visible')
-         .and('have.attr','placeholder',value)
-        return this
+       cy.get('[ng-model="$ctrl.article.description"]').should('be.visible')
+       cy.get('[ng-model="$ctrl.article.body"]').should('be.visible')
+       cy.get('[ng-model="$ctrl.tagField"]').should('be.visible')
+       cy.get('[ng-click="$ctrl.submit()"]').should('be.visible')
     }
-    visibilityOfDescribtion(value){
-        cy.get('[ng-model="$ctrl.article.description"]').should('be.visible')
-          .and('have.attr','placeholder',value)
-        return this
-    }
-    visibilityOfBody(){
-        cy.get('[ng-model="$ctrl.article.body"]').should('be.visible')
-     }
-    visibilityOfTags(value){
-        cy.get('[ng-model="$ctrl.tagField"]').should('be.visible')
-          .and('have.attr','placeholder',value)
-        return this
-    }
-    visibilityOfPublishBtn(){
-        cy.get('[ng-click="$ctrl.submit()"]')
-          .should('be.visible')
+    checkVisibiltyOfArticle(){
+      cy.get('[ng-bind="::$ctrl.article.title"]').should('be.visible')
+      cy.get('[ng-bind-html="::$ctrl.article.body"]').should('be.visible')
+      cy.get('[ng-show="$ctrl.canModify"]').should('be.visible')
+
     }
     TitleOfPage(value){
-       cy.title().and('include',value)
+       cy.title().should('include',value)
     }
-
-    SingleError(value){
-     cy.get('ul.error-messages').children().children().should('contain',value)
-     }
-
-    errorMessages(values){
-        const arr =cy.get('ul.error-messages').children().children() 
-         arr.each(($li,index)=>{
-          assert.equal($li.text(), values[index], 'vals equal')
-           //expect($li.text()).to.contain(values[index])
-        })
+    errorMessage(value){
+       cy.get('ul.error-messages').contains(value)
     }
 }
 export default ArticleFormAssertion;
