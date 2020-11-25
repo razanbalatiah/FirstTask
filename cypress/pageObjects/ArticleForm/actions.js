@@ -1,5 +1,6 @@
 class ArticleFormActions{
     openNewArticleTab(){
+        cy.visit('https://demo.productionready.io/')
         cy.get('[ui-sref="app.editor"]').should("be.visible").trigger("click")
     }
     fillArticalForm(title,desc,body,tags){

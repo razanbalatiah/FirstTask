@@ -9,12 +9,10 @@ const articleFormAssertion=new ArticleFormAssertion();
 
     beforeEach(()=>{
        cy.login()
-       cy.visit('https://demo.productionready.io/')
-       articleFormActions.openNewArticleTab()
     }) 
     
     Given('A user In Home page',()=>{
-      articleFormAssertion.TitleOfPage('Home — Conduit')
+      cy.visit('https://demo.productionready.io/')
     })
     When('He clicks on New article tab',()=>{
         articleFormActions.openNewArticleTab()
@@ -31,7 +29,7 @@ const articleFormAssertion=new ArticleFormAssertion();
     })
   
     Given('A user in New article form',()=>{
-         articleFormAssertion.TitleOfPage('Editor — Conduit')
+      articleFormActions.openNewArticleTab()
     }) 
     And ("He fills all fields corrcetly",()=>{
         articleFormActions.fillArticalForm('Title','Desc  ','body  ','tag{enter}  ')
@@ -44,7 +42,7 @@ const articleFormAssertion=new ArticleFormAssertion();
       })
       
     Given('A user in New article form',()=>{    
-      articleFormAssertion.TitleOfPage('Editor — Conduit')
+      articleFormActions.openNewArticleTab()
     }) 
     And ("He didn't fill any field in the form",()=>{
         articleFormActions.fillArticalForm(' ','  ','  ','  ')
@@ -57,7 +55,7 @@ const articleFormAssertion=new ArticleFormAssertion();
     })
     
     Given('A user in New article form',()=>{
-        articleFormAssertion.TitleOfPage('Editor — Conduit')
+      articleFormActions.openNewArticleTab()
     }) 
     And ("He fills Title and description field only",()=>{
       articleFormActions.fillArticalForm(' Title ',' Desc ','  ','  ')
@@ -71,7 +69,7 @@ const articleFormAssertion=new ArticleFormAssertion();
     })
 
     Given('A user in New article form',()=>{
-        articleFormAssertion.TitleOfPage('Editor — Conduit')
+      articleFormActions.openNewArticleTab()
     }) 
     Then ("He fills Title and body fields",()=>{
       articleFormActions.fillArticalForm(' Title ','  ','  body ','  ')
@@ -84,7 +82,7 @@ const articleFormAssertion=new ArticleFormAssertion();
     })
   
     Given('A user in New article form',()=>{
-      articleFormAssertion.TitleOfPage('Editor — Conduit')
+      articleFormActions.openNewArticleTab()
     }) 
     And ("He fills description and body fields",()=>{
     articleFormActions.fillArticalForm(' ',' desc ',' body ','  ')
@@ -98,7 +96,7 @@ const articleFormAssertion=new ArticleFormAssertion();
   })
 
     Given('A user in New article form',()=>{
-      articleFormAssertion.TitleOfPage('Editor — Conduit')
+      articleFormActions.openNewArticleTab()
     }) 
     And ("He fills tags field only",()=>{
       articleFormActions.fillArticalForm(' ','  ','  ',' tag{enter} ')
@@ -111,7 +109,7 @@ const articleFormAssertion=new ArticleFormAssertion();
     })
 
     Given('A user in New article form',()=>{
-       articleFormAssertion.TitleOfPage('Editor — Conduit')
+      articleFormActions.openNewArticleTab()
     }) 
     And ("He fills Title field only",()=>{
       articleFormActions.fillArticalForm('Title ','  ','  ','  ')
@@ -124,7 +122,7 @@ const articleFormAssertion=new ArticleFormAssertion();
     })
      
     Given('A user in New article form',()=>{
-       articleFormAssertion.TitleOfPage('Editor — Conduit')
+      articleFormActions.openNewArticleTab()
     }) 
     And ("He fills description field only",()=>{
       articleFormActions.fillArticalForm(' ',' desc ','  ','  ')
@@ -137,7 +135,7 @@ const articleFormAssertion=new ArticleFormAssertion();
     })
 
     Given('A user in New article form',()=>{
-       articleFormAssertion.TitleOfPage('Editor — Conduit')
+      articleFormActions.openNewArticleTab()
     }) 
     And ("He fills body field only",()=>{
       articleFormActions.fillArticalForm(' ','  ',' body ','  ')
