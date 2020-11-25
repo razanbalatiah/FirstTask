@@ -19,49 +19,69 @@ Feature:  ArticlForm
       Given A user in New article form 
       And He didn't fill any field in the form 
       When He clicks on publish Article button 
-      Then The Error message "title cannot be blank and title is too short and description cannot be blank and description is too short and body cannot be blank" should be displayed
-      
-    Scenario: Fill Title field only in the form 
-      Given A user in New article form 
-      When He fills Title field only  
-      And He clicks on publish Article button 
-      Then The Error message "description cannot be blank and description is too short and body cannot be blank" should be displayed
-      
-    Scenario: Fill description field only in the form 
-      Given A user in New article form 
-      When He fills description field only  
-      And He clicks on publish Article button 
-      Then The Error message "title cannot be blank and title is too short and body cannot be blank" should be displayed
+      Then Error message should appear "title can't be blank" 
+      And Error message should appear "title is too short (minimum is 1 character)"
+      And Error message should appear "description can't be blank" 
+      And Error message should appear "description is too short (minimum is 1 character)"
+      And Error message should appear "body can't be blank" 
 
-    Scenario: Fill body field only in the form 
-      Given A user in New article form 
-      When He fills body field only  
-      And He clicks on publish Article button 
-      Then The Error message "title cannot be blank and title is too short and description cannot be blank and description is too short" should be displayed
 
     Scenario: Fill Title and description fields only in the form 
       Given A user in New article form 
       When He fills Title and description field only  
       And He clicks on publish Article button 
-      Then The Error message "body can't be blank" should be displayed 
+      Then Error message should appear "body can't be blank"
+     
+    Scenario: Fill Title field only in the form 
+      Given A user in New article form 
+      When He fills Title field only  
+      And He clicks on publish Article button 
+      Then Error message should appear "description can't be blank" 
+      And Error message should appear "description is too short (minimum is 1 character)"
+      And Error message should appear "body can't be blank"  
+      
+    Scenario: Fill description field only in the form 
+      Given A user in New article form 
+      When He fills description field only  
+      And He clicks on publish Article button 
+      Then Error message should appear "title can't be blank" 
+      And Error message should appear "title is too short (minimum is 1 character)"
+      And Error message should appear "body can't be blank" 
+
+    Scenario: Fill body field only in the form 
+      Given A user in New article form 
+      When He fills body field only  
+      And He clicks on publish Article button 
+      Then Error message should appear "title can't be blank" 
+      And Error message should appear "title is too short (minimum is 1 character)"
+      And Error message should appear "description can't be blank" 
+      And Error message should appear "description is too short (minimum is 1 character)"
+    
  
      Scenario: Fill Title and body fields only in the form 
       Given A user in New article form 
       When He fills Title and body fields 
       And He clicks on publish Article button 
-      Then The Error message "description cannot be blank and description is too short" should be displayed
+      Then Error message should appear "description can't be blank" 
+      And Error message should appear "description is too short (minimum is 1 character)"
  
-    Scenario: Fill description and body fields only in the form 
+ 
+     Scenario: Fill description and body fields only in the form 
       Given A user in New article form 
       When He fills description and body fields  
       And He clicks on publish Article button 
-      Then The error message "title cannot be blank and title is too short" should be displayed
+      Then Error message should appear "title can't be blank" 
+      And Error message should appear "title is too short (minimum is 1 character)"
+     
 
     Scenario: Fill tags only in the form 
      Given A user in New article form 
       When He fills tags field only  
       And He clicks on publish Article button 
-      Then The Error message "title cannot be blank and title is too short and description cannot be blank and description is too short and body cannot be blank" should be displayed
-
+      Then Error message should appear "title can't be blank" 
+      And Error message should appear "title is too short (minimum is 1 character)"
+      And Error message should appear "description can't be blank" 
+      And Error message should appear "description is too short (minimum is 1 character)"
+      And Error message should appear "body can't be blank" 
 
 

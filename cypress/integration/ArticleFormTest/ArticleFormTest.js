@@ -1,18 +1,18 @@
 import {Given , When , Then , And } from 'cypress-cucumber-preprocessor/steps';
- import ArticleFormActions from '../../pageObjects/ArticleForm/actions';
+import ArticleFormActions from '../../pageObjects/ArticleForm/actions';
 import ArticleFormAssertion from '../../pageObjects/ArticleForm/assertions';
+import loginFormActions from '../../pageObjects/loginForm/actions';
 
 const articleFormActions=new ArticleFormActions();
+const loginActions=new loginFormActions();
 const articleFormAssertion=new ArticleFormAssertion(); 
 
     beforeEach(()=>{
-       articleFormActions.visitLoginPage()
-       articleFormActions.fillEmailInLoginForm('razanbalatiah96@gmail.com')
-       .fillPasswordInLoginForm('123456789')
-       .submitLoginForm() 
+       cy.login()
+       cy.visit('https://demo.productionready.io/')
        articleFormActions.openNewArticleTab()
     }) 
-
+    
     Given('A user In Home page',()=>{
       articleFormAssertion.TitleOfPage('Home — Conduit')
     })
@@ -52,60 +52,51 @@ const articleFormAssertion=new ArticleFormAssertion();
     When('He clicks on publish Article button',()=>{
         articleFormActions.publishArticleBtn()
     }) 
-    Then('The Error message "title cannot be blank and title is too short and description cannot be blank and description is too short and body cannot be blank" should be displayed',()=>{
-      articleFormAssertion.errorMessage("title can't be blank")
-      articleFormAssertion.errorMessage("title is too short (minimum is 1 character)")
-      articleFormAssertion.errorMessage("description can't be blank")
-      articleFormAssertion.errorMessage("description is too short (minimum is 1 character)")
-      articleFormAssertion.errorMessage("body can't be blank")
-
+    Then('Error message should appear{string}',(errorMessage)=>{
+        articleFormAssertion.errorMessage(errorMessage)
     })
     
-      Given('A user in New article form',()=>{
-         articleFormAssertion.TitleOfPage('Editor — Conduit')
-      }) 
-      And ("He fills Title and description field only",()=>{
-        articleFormActions.fillArticalForm(' Title ',' Desc ','  ','  ')
-
-      }) 
-      When('He clicks on publish Article button',()=>{
-        articleFormActions.publishArticleBtn()
-      }) 
-      Then('The Error message "body can\'t be blank" should be displayed',()=>{
-        articleFormAssertion.errorMessage("body can't be blank")
-      })
-
-      Given('A user in New article form',()=>{
-         articleFormAssertion.TitleOfPage('Editor — Conduit')
-      }) 
-      And ("He fills Title and body fields",()=>{
-        articleFormActions.fillArticalForm(' Title ','  ','  body ','  ')
-      }) 
-      When('He clicks on publish Article button',()=>{
-        articleFormActions.publishArticleBtn()
-      }) 
-      Then('The Error message "description cannot be blank and description is too short" should be displayed',()=>{
-         articleFormAssertion.errorMessage("description can't be blank") 
-         articleFormAssertion.errorMessage("description is too short (minimum is 1 character)")
-      })
-   
- 
-      Given('A user in New article form',()=>{
+    Given('A user in New article form',()=>{
         articleFormAssertion.TitleOfPage('Editor — Conduit')
-     }) 
-     And ("He fills description and body fields",()=>{
-      articleFormActions.fillArticalForm(' ',' desc ',' body ','  ')
+    }) 
+    And ("He fills Title and description field only",()=>{
+      articleFormActions.fillArticalForm(' Title ',' Desc ','  ','  ')
 
-     }) 
-     When('He clicks on publish Article button',()=>{
-       articleFormActions.publishArticleBtn()
-     }) 
-     Then('The error message "title cannot be blank and title is too short" should be displayed',()=>{
-        articleFormAssertion.errorMessage("title can't be blank")
-        articleFormAssertion.errorMessage("title is too short (minimum is 1 character)")
-     })
+    }) 
+    When('He clicks on publish Article button',()=>{
+      articleFormActions.publishArticleBtn()
+    }) 
+    Then('Error message should appear {string}',(errorMessage)=>{
+      articleFormAssertion.errorMessage(errorMessage)
+    })
 
-   
+    Given('A user in New article form',()=>{
+        articleFormAssertion.TitleOfPage('Editor — Conduit')
+    }) 
+    Then ("He fills Title and body fields",()=>{
+      articleFormActions.fillArticalForm(' Title ','  ','  body ','  ')
+    }) 
+    When('He clicks on publish Article button',()=>{
+      articleFormActions.publishArticleBtn()
+    }) 
+    Then('Error message should appear {string}',(errorMessage)=>{
+      articleFormAssertion.errorMessage(errorMessage)
+    })
+  
+    Given('A user in New article form',()=>{
+      articleFormAssertion.TitleOfPage('Editor — Conduit')
+    }) 
+    And ("He fills description and body fields",()=>{
+    articleFormActions.fillArticalForm(' ',' desc ',' body ','  ')
+
+    }) 
+    When('He clicks on publish Article button',()=>{
+      articleFormActions.publishArticleBtn()
+    }) 
+    Then('Error message should appear {string}',(errorMessage)=>{
+    articleFormAssertion.errorMessage(errorMessage)
+  })
+
     Given('A user in New article form',()=>{
       articleFormAssertion.TitleOfPage('Editor — Conduit')
     }) 
@@ -115,16 +106,10 @@ const articleFormAssertion=new ArticleFormAssertion();
     When('He clicks on publish Article button',()=>{
       articleFormActions.publishArticleBtn()
     }) 
-    Then('The Error message "title cannot be blank and title is too short and description cannot be blank and description is too short and body cannot be blank" should be displayed',()=>{
-      articleFormAssertion.errorMessage("title can't be blank")
-      articleFormAssertion.errorMessage("title is too short (minimum is 1 character)")
-      articleFormAssertion.errorMessage("description can't be blank")
-      articleFormAssertion.errorMessage("description is too short (minimum is 1 character)")
-      articleFormAssertion.errorMessage("body can't be blank")
-
+    Then('Error message should appear {string}',(errorMessage)=>{
+      articleFormAssertion.errorMessage(errorMessage)
     })
 
-   
     Given('A user in New article form',()=>{
        articleFormAssertion.TitleOfPage('Editor — Conduit')
     }) 
@@ -134,13 +119,9 @@ const articleFormAssertion=new ArticleFormAssertion();
     When('He clicks on publish Article button',()=>{
       articleFormActions.publishArticleBtn()
     }) 
-    Then('The Error message "description cannot be blank and description is too short and body cannot be blank" should be displayed',()=>{
-      articleFormAssertion.errorMessage("description can't be blank")
-      articleFormAssertion.errorMessage("description is too short (minimum is 1 character)")
-      articleFormAssertion.errorMessage("body can't be blank")
-
+    Then('Error message should appear {string}',(errorMessage)=>{
+      articleFormAssertion.errorMessage(errorMessage)
     })
-
      
     Given('A user in New article form',()=>{
        articleFormAssertion.TitleOfPage('Editor — Conduit')
@@ -151,11 +132,8 @@ const articleFormAssertion=new ArticleFormAssertion();
     When('He clicks on publish Article button',()=>{
       articleFormActions.publishArticleBtn()
     }) 
-    Then('The Error message "title cannot be blank and title is too short and body cannot be blank" should be displayed',()=>{
-      articleFormAssertion.errorMessage("title can't be blank")
-      articleFormAssertion.errorMessage("title is too short (minimum is 1 character)")
-       articleFormAssertion.errorMessage("body can't be blank")
-
+    Then('Error message should appear {string}',(errorMessage)=>{
+      articleFormAssertion.errorMessage(errorMessage)
     })
 
     Given('A user in New article form',()=>{
@@ -167,14 +145,9 @@ const articleFormAssertion=new ArticleFormAssertion();
     When('He clicks on publish Article button',()=>{
       articleFormActions.publishArticleBtn()
     }) 
-    Then('The Error message "title cannot be blank and title is too short and description cannot be blank and description is too short" should be displayed',()=>{
-      articleFormAssertion.errorMessage("title can't be blank")
-      articleFormAssertion.errorMessage("title is too short (minimum is 1 character)")
-      articleFormAssertion.errorMessage("description can't be blank")
-      articleFormAssertion.errorMessage("description is too short (minimum is 1 character)")
- 
+    Then('Error message should appear {string}',(errorMessage)=>{
+      articleFormAssertion.errorMessage(errorMessage)
     })
-
      
     
      
