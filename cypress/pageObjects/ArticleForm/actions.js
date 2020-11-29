@@ -1,3 +1,7 @@
+import ArticleFormUtil from "../ArticleForm/dataUtil"
+
+const AFU = new ArticleFormUtil();
+
 class ArticleFormActions{
     openNewArticleTab(){
         cy.visit('https://demo.productionready.io/')
@@ -12,6 +16,21 @@ class ArticleFormActions{
      }
     publishArticleBtn(){
         cy.get('[ng-click="$ctrl.submit()"]').click()
+        AFU.postArticle()
     } 
+    deleteBtn(){
+        cy.get('.article-actions').contains('Delete Article').click()
+        AFU.deleteArticle()   
+    }
+    updateBtn(){
+        cy.get('.article-actions').contains('Edit Article').click()
+    }
+    
+    afterUpdate(){
+        cy.get('[ng-click="$ctrl.submit()"]').click()
+        AFU.updateArticle()
+     }
+
+
 }
 export default ArticleFormActions;

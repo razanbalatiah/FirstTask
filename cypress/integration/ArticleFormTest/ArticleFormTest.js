@@ -1,15 +1,16 @@
 import {Given , When , Then , And } from 'cypress-cucumber-preprocessor/steps';
-import ArticleFormActions from '../../pageObjects/ArticleForm/actions';
+ import ArticleFormActions from '../../pageObjects/ArticleForm/actions';
 import ArticleFormAssertion from '../../pageObjects/ArticleForm/assertions';
-import loginFormActions from '../../pageObjects/loginForm/actions';
-
+ 
 const articleFormActions=new ArticleFormActions();
-const loginActions=new loginFormActions();
 const articleFormAssertion=new ArticleFormAssertion(); 
 
     beforeEach(()=>{
        cy.login()
     }) 
+    afterEach(()=>{
+      cy.logout()
+    })
     
     Given('A user In Home page',()=>{
       cy.visit('https://demo.productionready.io/')
@@ -37,9 +38,53 @@ const articleFormAssertion=new ArticleFormAssertion();
     When('He clicks on publish Article button',()=>{
         articleFormActions.publishArticleBtn()
     }) 
-    Then('The article will be published in Home page',()=>{
+    Then('The article will be published in Article page',()=>{
       articleFormAssertion.checkVisibiltyOfArticle()
-      })
+    })
+
+
+
+    Given('A user in New article form',()=>{
+      articleFormActions.openNewArticleTab()
+    }) 
+    And ("He fills all fields corrcetly",()=>{
+        articleFormActions.fillArticalForm('Title','Desc  ','body  ','tag{enter}  ')
+    }) 
+    When('He clicks on publish Article button',()=>{
+        articleFormActions.publishArticleBtn()
+    }) 
+    Then('The article will be published in Article page',()=>{
+      articleFormAssertion.checkVisibiltyOfArticle()
+    })
+    When('He clicks on Delete Article button',()=>{
+        articleFormActions.deleteBtn()
+    }) 
+    Then('The article will be removed from Article page',()=>{
+      cy.log("removed")
+    })
+
+    Given('A user in New article form',()=>{
+      articleFormActions.openNewArticleTab()
+    }) 
+    And ("He fills all fields corrcetly",()=>{
+        articleFormActions.fillArticalForm('Title','Desc  ','body  ','tag{enter}  ')
+    }) 
+    When('He clicks on publish Article button',()=>{
+        articleFormActions.publishArticleBtn()
+    }) 
+    Then('The article will be published in Article page',()=>{
+      articleFormAssertion.checkVisibiltyOfArticle()
+    })
+    When('He clicks on Edit Article button',()=>{
+        articleFormActions.updateBtn()
+    }) 
+    // And ('He Edit any field in the editor page',()=>{
+    //   articleFormActions.updateField('Description')
+    // })
+    Then('The article will be updated',()=>{
+       articleFormActions.afterUpdate()
+    })
+      
       
     Given('A user in New article form',()=>{    
       articleFormActions.openNewArticleTab()
@@ -149,3 +194,7 @@ const articleFormAssertion=new ArticleFormAssertion();
      
     
      
+
+  // it('tyy',()=>{
+  //   cy.visit('https://example.cypress.io/commands/network-requests')
+  // })

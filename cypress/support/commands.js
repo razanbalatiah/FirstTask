@@ -10,6 +10,7 @@
 //
 //
 // -- This is a parent command --
+
 Cypress.Commands.add("login",()=> {
     cy.request({
         method:'POST',
@@ -24,7 +25,20 @@ Cypress.Commands.add("login",()=> {
         window.localStorage.setItem('jwtToken',resp.body.user.token)
     })
  })
+ 
+ Cypress.Commands.add("logout",()=> {
+    cy.clearLocalStorage()
+ })
 
+ Cypress.Commands.add("fillArticle",()=> {
+    articleFormActions.openNewArticleTab()
+    articleFormActions.fillArticalForm('Title','Desc  ','body  ','tag{enter}  ')
+    articleFormActions.publishArticleBtn()
+    articleFormAssertion.checkVisibiltyOfArticle()
+
+
+
+ })
 
 // -- This is a child command --
 // Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
