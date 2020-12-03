@@ -1,40 +1,24 @@
 Feature:  ArticlForm
 
-  #  Scenario: opening New article tab
-  #     Given A user In Home page 
-  #     When He clicks on New article tab 
-  #     Then New article tab will be opened 
+   Scenario: opening New article tab
+      Given A user In Home page 
+      When He clicks on New article tab 
+      Then New article tab will be opened 
 
+   Scenario: update article using api 
+       When User update article
+  
   #   Scenario: Article fields in form 
   #     When A user visits the article page   
   #     Then The fields of the form should be displayed   
 
-    Scenario: Fill all fields in the form 
-      Given A user in New article form 
-      And He fills all fields corrcetly 
-      When He clicks on publish Article button
-      Then The article will be published in Article page
+    # Scenario: Fill all fields in the form 
+    #   Given A user in New article form 
+    #   And He fills all fields corrcetly 
+    #   When He clicks on publish Article button
+    #   Then The article will be published in Article page
 
-
-    Scenario: Delete An Article 
-      Given A user in New article form 
-      And He fills all fields corrcetly 
-      When He clicks on publish Article button
-      Then The article will be published in Article page 
-      When He clicks on Delete Article button
-      Then The article will be removed from Article page
-
-    Scenario: Edit An Article 
-      Given A user in New article form 
-      And He fills all fields corrcetly 
-      When He clicks on publish Article button
-      Then The article will be published in Article page
-      When He clicks on Edit Article button
-      And He Edit any field in the editor page  
-      Then The article will be updated
-
-
-
+   
     # Scenario: Keep all fields blank  
     #   Given A user in New article form 
     #   And He didn't fill any field in the form 

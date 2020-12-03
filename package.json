@@ -1,27 +1,25 @@
 {
-  "name": "training",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "cypress-cucumber-webpack-example",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "cypress": "^5.5.0"
+    "@types/node": "^10.12.11"
   },
-  "devDependencies": {},
   "scripts": {
-    "test1": "echo \"Error: no test specified\" && exit 1",
-	"test2": "cypress open",
     "test": "cypress run --spec \"**/*.feature\"",
-    "test:all": "cypress run --spec \"**/*.features\""
+    "test:all": "cypress run --spec \"**/*.features\"",
+	 "test2":"cypress open"
   },
- 
-  "cypress-cucumber-preprocessor":  {
+  "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true,
     "stepDefinitions": "cypress/integration"
+  },
+  "devDependencies": {
+    "@cypress/webpack-preprocessor": "^4.0.2",
+    "cypress": "^6.0.0",
+    "cypress-cucumber-preprocessor": "latest",
+    "ts-loader": "^5.3.1",
+    "typescript": "^3.2.1",
+    "webpack": "^4.28.2"
   }
-
- ,
-  "author": "",
-  "license": "ISC",
-  "keywords": [],
-  "description": ""
 }
-
